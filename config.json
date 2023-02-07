@@ -1,0 +1,118 @@
+{
+    "version": 3,
+    "name": "Cnext API Gateway",
+    "timeout": "30000ms",
+    "output_encoding": "json",
+    "port": 8080,
+    "cache_ttl": "3600s",
+    "endpoints":
+    [
+        {
+            "endpoint": "/v1/base/combine",
+            "method": "GET",
+            "group": "entity",
+            "backend":
+            [
+                {
+                    "url_pattern": "/api/1/entity/meta-details/",
+                    "method": "GET",
+                    "encoding": "json",
+                    "host":
+                    [
+                        "http://localhost:8000"
+                    ],
+                    "group": "meta_details",
+                    "extra_config":
+                    {
+                        "qos/http-cache":
+                        {
+                            "@comment": "This API returns a cache-control: max-age=0 so KrakenD won't cache this unless changed"
+                        }
+                    }
+                },
+                {
+                    "url_pattern": "/api/1/entity/upcoming-exams/",
+                    "method": "GET",
+                    "encoding": "json",
+                    "host":
+                    [
+                        "http://localhost:8000"
+                    ],
+                    "group": "upcoming_exams",
+                    "extra_config":
+                    {
+                        "qos/http-cache":
+                        {
+                            "@comment": "This API returns a cache-control: max-age=0 so KrakenD won't cache this unless changed"
+                        }
+                    }
+                }
+            ],
+            "input_query_strings":
+            [
+                "*"
+            ],
+            "input_headers":[
+                "*"
+            ]
+        },
+        {
+            "endpoint": "/v1/base/api/{version}/{param1}/",
+            "method": "GET",
+            "backend":
+            [
+                {
+                    "url_pattern": "/api/{version}/{param1}/",
+                    "method": "GET",
+                    "host":
+                    [
+                        "http://localhost:8000"
+                    ],
+                    "extra_config":
+                    {
+                        "qos/http-cache":
+                        {
+                            "@comment": "This API returns a cache-control: max-age=0 so KrakenD won't cache this unless changed"
+                        }
+                    }
+                }
+            ],
+            "input_query_strings":
+            [
+                "*"
+            ],
+            "input_headers":[
+                "*"
+            ]
+        },
+        {
+            "endpoint": "/v1/base/api/{version}/{param1}/{param2}/",
+            "method": "GET",
+            "backend":
+            [
+                {
+                    "url_pattern": "/api/{version}/{param1}/{param2}/",
+                    "method": "GET",
+                    "host":
+                    [
+                        "http://localhost:8000"
+                    ],
+                    "extra_config":
+                    {
+                        "qos/http-cache":
+                        {
+                            "@comment": "This API returns a cache-control: max-age=0 so KrakenD won't cache this unless changed"
+                        }
+                    }
+                }
+            ],
+            "input_query_strings":
+            [
+                "*"
+            ],
+            "input_headers":[
+                "*"
+            ]
+        }
+    ]
+}
