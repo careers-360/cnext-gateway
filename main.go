@@ -1,7 +1,6 @@
 package main
 
 import (
-   "flag"
    "log"
    "os"
    "time"
@@ -16,28 +15,23 @@ import (
 )
 
 func main() {
-    port := flag.Int("p", 0, "Port of the service")
-    debug := flag.Bool("d", true, "Enable the debug")
-    configFile := flag.String("c", "config.json", "Path to the configuration filename")
-
-    flag.Parse()
-
+    configFile := "config.json"
     parser := config.NewParser()
-    serviceConfig, err := parser.Parse(*configFile)
+    serviceConfig, err := parser.Parse(configFile)
+    
     if err != nil {
         log.Fatal("ERROR:", err.Error())
-    }
-    serviceConfig.Debug = serviceConfig.Debug || *debug
-    if *port != 0 {
-        serviceConfig.Port = *port
     }
 
     store := persistence.NewInMemoryStore(time.Minute * 60)
 
-    logger, _ := logging.NewLogger("DEBUG", os.Stdout, "Cnext")
+    logger, _ := logging.NewLogger("ERROR", os.Stdout, "Cnext")
+
+    routerGin := gin.Default()
+    routerGin.SetTrustedProxies([]string{"127.0.0.1"})
 
     routerFactory := krakendgin.NewFactory(krakendgin.Config{
-        Engine:       gin.Default(),
+        Engine:       routerGin,
         ProxyFactory: customProxyFactory{logger, proxy.DefaultFactory(logger)},
         Logger:       logger,
         HandlerFactory: func(configuration *config.EndpointConfig, proxy proxy.Proxy) gin.HandlerFunc {
@@ -46,6 +40,7 @@ func main() {
         RunServer:    server.RunServer,
     })
 
+    
     routerFactory.New().Run(serviceConfig)
 }
 
