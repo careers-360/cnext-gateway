@@ -22,14 +22,7 @@
                     [
                         "http://cnext-backend-staging-service"
                     ],
-                    "group": "meta_details",
-                    "extra_config":
-                    {
-                        "qos/http-cache":
-                        {
-                            "@comment": "This API returns a cache-control: max-age=0 so KrakenD won't cache this unless changed"
-                        }
-                    }
+                    "group": "meta_details"
                 },
                 {
                     "url_pattern": "/api/1/entity/upcoming-exams/",
@@ -39,14 +32,7 @@
                     [
                         "http://cnext-backend-staging-service"
                     ],
-                    "group": "upcoming_exams",
-                    "extra_config":
-                    {
-                        "qos/http-cache":
-                        {
-                            "@comment": "This API returns a cache-control: max-age=0 so KrakenD won't cache this unless changed"
-                        }
-                    }
+                    "group": "upcoming_exams"
                 }
             ],
             "input_query_strings":
@@ -68,14 +54,7 @@
                     "host":
                     [
                         "http://cnext-backend-staging-service"
-                    ],
-                    "extra_config":
-                    {
-                        "qos/http-cache":
-                        {
-                            "@comment": "This API returns a cache-control: max-age=0 so KrakenD won't cache this unless changed"
-                        }
-                    }
+                    ]
                 }
             ],
             "input_query_strings":
@@ -97,14 +76,7 @@
                     "host":
                     [
                         "http://cnext-backend-staging-service"
-                    ],
-                    "extra_config":
-                    {
-                        "qos/http-cache":
-                        {
-                            "@comment": "This API returns a cache-control: max-age=0 so KrakenD won't cache this unless changed"
-                        }
-                    }
+                    ]
                 }
             ],
             "input_query_strings":
