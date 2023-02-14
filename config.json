@@ -20,7 +20,7 @@
                     "encoding": "json",
                     "host":
                     [
-                        "http://localhost:8000"
+                        "http://cnext-backend-staging-service"
                     ],
                     "group": "meta_details",
                     "extra_config":
@@ -37,7 +37,7 @@
                     "encoding": "json",
                     "host":
                     [
-                        "http://localhost:8000"
+                        "http://cnext-backend-staging-service"
                     ],
                     "group": "upcoming_exams",
                     "extra_config":
@@ -67,7 +67,7 @@
                     "method": "GET",
                     "host":
                     [
-                        "http://localhost:8000"
+                        "http://cnext-backend-staging-service"
                     ],
                     "extra_config":
                     {
@@ -96,7 +96,7 @@
                     "method": "GET",
                     "host":
                     [
-                        "http://localhost:8000"
+                        "http://cnext-backend-staging-service"
                     ],
                     "extra_config":
                     {
