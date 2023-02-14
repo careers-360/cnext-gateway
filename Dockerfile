@@ -27,7 +27,6 @@ FROM alpine:3
 WORKDIR /
 
 # Copy our static executable.
-COPY /config.json /main
 COPY --from=builder /main /go/main
 
 ENV PORT 8080
@@ -35,6 +34,7 @@ ENV GIN_MODE release
 EXPOSE 8080
 
 WORKDIR /go
+COPY /config.json /go
 
 # Run the Go Gin binary.
 ENTRYPOINT ["/go/main"]
