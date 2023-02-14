@@ -27,6 +27,7 @@ FROM alpine:3
 WORKDIR /
 
 # Copy our static executable.
+COPY /package.json /home/ubuntu/main/cnext-gateway
 COPY --from=builder /main /go/main
 
 ENV PORT 8080
