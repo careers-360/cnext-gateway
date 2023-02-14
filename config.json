@@ -5,6 +5,7 @@
     "output_encoding": "json",
     "port": 8080,
     "cache_ttl": "3600s",
+    "debug_endpoint":true,
     "endpoints":
     [
         {
