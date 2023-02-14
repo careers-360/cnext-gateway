@@ -27,7 +27,7 @@ FROM alpine:3
 WORKDIR /
 
 # Copy our static executable.
-COPY /config.json /go/main
+COPY /config.json /go
 COPY --from=builder /main /go/main
 
 ENV PORT 8080
